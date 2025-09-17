@@ -1,4 +1,6 @@
-# 🚀 Rezi SDK
+<!-- @format -->
+
+# Rezi SDK
 
 ### Browser Support
 
@@ -24,8 +26,6 @@ MIT License - see LICENSE file for details.
 ## 📞 Support
 
 - 📧 Email: support@rezi.io
-- 🐛 Issues: [GitHub Issues](https://github.com/your-repo/issues)
-- 📖 Docs: [Full Documentation](https://docs.rezi.io/sdk)
 
 ---
 
