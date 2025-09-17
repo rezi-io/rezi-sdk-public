@@ -66,12 +66,12 @@ The SDK will automatically:
 
 ### HTML Attributes
 
-| Attribute                  | Description                                        | Required |
-| -------------------------- | -------------------------------------------------- | -------- |
-| `data-resume-dropzone`     | Marks the element as a drop zone                   | ✅ Yes   |
-| `data-redirect-url`        | URL to redirect after successful upload            | ❌ No    |
-| `data-dev`                 | Enable development mode (uses dev API endpoints)   | ❌ No    |
-| `id="replace-with-loader"` | Element to hide during loading (e.g., upload icon) | ❌ No    |
+| Attribute                  | Description                                        | Required                 |
+| -------------------------- | -------------------------------------------------- | ------------------------ |
+| `data-resume-dropzone`     | Marks the element as a drop zone                   | ✅ Yes                   |
+| `data-redirect-url`        | URL to redirect after successful upload            | ✅ Yes                   |
+| `data-dev`                 | Enable development mode (uses dev API endpoints)   | ❌ No (False by default) |
+| `id="replace-with-loader"` | Element to hide during loading (e.g., upload icon) | ✅ Yes                   |
 
 ## Manual Initialization
 
