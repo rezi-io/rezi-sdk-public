@@ -1,0 +1,23 @@
+{
+	"name": "rezi-sdk",
+	"version": "1.0.0",
+	"description": "A simple, powerful SDK for creating beautiful UI components",
+	"main": "rezi-sdk.min.js",
+	"style": "rezi-sdk.css",
+	"jsdelivr": "rezi-sdk.min.js",
+	"unpkg": "rezi-sdk.min.js",
+	"files": [
+		"rezi-sdk.min.js",
+		"rezi-sdk.css"
+	],
+	"keywords": [
+		"ui",
+		"components",
+		"sdk",
+		"javascript",
+		"css",
+		"no-code"
+	],
+	"author": "Rezi Team",
+	"license": "MIT"
+}

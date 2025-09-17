@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezi SDK Example</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .demo-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .demo-section:last-child {
+            border-bottom: none;
+        }
+        h1 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .button-demo {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .usage-instruction {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .toast-controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Rezi SDK Demo</h1>
+        <p>Welcome to the Rezi SDK demonstration! This SDK provides easy-to-use, beautiful components that you can integrate into any no-code website tool.</p>
+
+        <div class="usage-instruction">
+            <strong>💡 For No-Code Tools:</strong> Simply include the CSS and JS files in your website's head section, then use the simple JavaScript API to create components. No build process required!
+        </div>
+
+        <!-- Button Demo -->
+        <div class="demo-section">
+            <h2>📱 Buttons</h2>
+            <p>Create beautiful, responsive buttons with different styles and sizes:</p>
+            
+            <div class="button-demo" id="button-container">
+                <!-- Buttons will be inserted here -->
+            </div>
+
+            <div class="code-block">
+// Create buttons easily
+const primaryBtn = ReziSDK.createButton({
+    text: 'Primary Button',
+    variant: 'primary',
+    size: 'md',
+    onClick: () => alert('Primary clicked!')
+});
+primaryBtn.render('#button-container');
+
+const secondaryBtn = ReziSDK.createButton({
+    text: 'Secondary',
+    variant: 'secondary', 
+    size: 'sm'
+});
+secondaryBtn.render('#button-container');
+            </div>
+        </div>
+
+        <!-- Toast Demo -->
+        <div class="demo-section">
+            <h2>🍞 Toast Notifications</h2>
+            <p>Show elegant toast notifications for user feedback:</p>
+            
+            <div class="toast-controls">
+                <button onclick="showSuccessToast()" class="demo-btn">Success Toast</button>
+                <button onclick="showErrorToast()" class="demo-btn">Error Toast</button>
+                <button onclick="showWarningToast()" class="demo-btn">Warning Toast</button>
+                <button onclick="showInfoToast()" class="demo-btn">Info Toast</button>
+            </div>
+
+            <div class="code-block">
+// Show different types of toasts
+ReziSDK.showToast({
+    message: 'Success! Your action was completed.',
+    type: 'success',
+    duration: 3000,
+    position: 'top-right'
+});
+
+ReziSDK.showToast({
+    message: 'Error: Something went wrong.',
+    type: 'error',
+    position: 'top-center'
+});
+            </div>
+        </div>
+
+        <!-- Integration Guide -->
+        <div class="demo-section">
+            <h2>🔧 Integration Guide</h2>
+            <p>To use Rezi SDK in your no-code website tool:</p>
+            
+            <h3>1. Include the CSS and JS files:</h3>
+            <div class="code-block">
+&lt;!-- Add to your HTML head --&gt;
+&lt;link rel="stylesheet" href="path/to/rezi-sdk.css"&gt;
+&lt;script src="path/to/rezi-sdk.min.js"&gt;&lt;/script&gt;
+            </div>
+
+            <h3>2. Use the components:</h3>
+            <div class="code-block">
+// The SDK is available globally as ReziSDK
+const button = ReziSDK.createButton({
+    text: 'Click me!',
+    variant: 'primary',
+    onClick: () => console.log('Button clicked!')
+});
+
+// Render to any container
+button.render('#my-container');
+
+// Show notifications
+ReziSDK.showToast({
+    message: 'Hello from Rezi SDK!',
+    type: 'success'
+});
+            </div>
+
+            <h3>3. Customize themes:</h3>
+            <div class="code-block">
+// You can customize colors via CSS variables
+:root {
+    --rezi-primary: #your-brand-color;
+    --rezi-success: #your-success-color;
+}
+
+// Or pass theme in component config
+const darkButton = ReziSDK.createButton({
+    text: 'Dark Button',
+    theme: 'dark',
+    variant: 'primary'
+});
+            </div>
+        </div>
+
+        <!-- API Reference -->
+        <div class="demo-section">
+            <h2>📚 Quick API Reference</h2>
+            
+            <h3>ReziSDK.createButton(config)</h3>
+            <div class="code-block">
+{
+    text: string,           // Button text
+    variant: 'primary' | 'secondary' | 'outline',
+    size: 'sm' | 'md' | 'lg',
+    theme: 'light' | 'dark',
+    onClick: function,      // Click handler
+    disabled: boolean
+}
+            </div>
+
+            <h3>ReziSDK.showToast(config)</h3>
+            <div class="code-block">
+{
+    message: string,        // Toast message
+    type: 'success' | 'error' | 'warning' | 'info',
+    duration: number,       // Auto-hide duration (ms)
+    position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
+}
+            </div>
+        </div>
+    </div>
+
+    <!-- Load the SDK CSS -->
+    <link rel="stylesheet" href="./rezi-sdk.css">
+    
+    <!-- Load the SDK JavaScript -->
+    <script src="./rezi-sdk.min.js"></script>
+
+    <style>
+        /* Demo button styling */
+        .demo-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background 0.2s;
+        }
+        .demo-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+
+    <script>
+        // Initialize demo components when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create demo buttons
+            const primaryBtn = ReziSDK.createButton({
+                text: 'Primary Button',
+                variant: 'primary',
+                size: 'md',
+                onClick: () => {
+                    ReziSDK.showToast({
+                        message: 'Primary button clicked!',
+                        type: 'success'
+                    });
+                }
+            });
+            primaryBtn.render('#button-container');
+
+            const secondaryBtn = ReziSDK.createButton({
+                text: 'Secondary',
+                variant: 'secondary',
+                size: 'sm',
+                onClick: () => {
+                    ReziSDK.showToast({
+                        message: 'Secondary button clicked!',
+                        type: 'info'
+                    });
+                }
+            });
+            secondaryBtn.render('#button-container');
+
+            const outlineBtn = ReziSDK.createButton({
+                text: 'Outline Large',
+                variant: 'outline',
+                size: 'lg',
+                onClick: () => {
+                    ReziSDK.showToast({
+                        message: 'Outline button clicked!',
+                        type: 'warning'
+                    });
+                }
+            });
+            outlineBtn.render('#button-container');
+
+            const disabledBtn = ReziSDK.createButton({
+                text: 'Disabled',
+                variant: 'primary',
+                disabled: true
+            });
+            disabledBtn.render('#button-container');
+        });
+
+        // Toast demo functions
+        function showSuccessToast() {
+            ReziSDK.showToast({
+                message: 'Success! Your action was completed successfully.',
+                type: 'success',
+                duration: 3000,
+                position: 'top-right'
+            });
+        }
+
+        function showErrorToast() {
+            ReziSDK.showToast({
+                message: 'Error: Something went wrong. Please try again.',
+                type: 'error',
+                duration: 4000,
+                position: 'top-center'
+            });
+        }
+
+        function showWarningToast() {
+            ReziSDK.showToast({
+                message: 'Warning: Please check your input and try again.',
+                type: 'warning',
+                duration: 5000,
+                position: 'bottom-right'
+            });
+        }
+
+        function showInfoToast() {
+            ReziSDK.showToast({
+                message: 'Info: This is an informational message.',
+                type: 'info',
+                duration: 3000,
+                position: 'bottom-left'
+            });
+        }
+    </script>
+</body>
+</html>
