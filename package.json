@@ -1,7 +1,7 @@
 {
 	"name": "rezi-sdk",
 	"version": "1.0.0",
-	"description": "A simple, powerful SDK for creating beautiful UI components",
+	"description": "A simple sdk for resume import",
 	"main": "rezi-sdk.min.js",
 	"style": "rezi-sdk.css",
 	"jsdelivr": "rezi-sdk.min.js",

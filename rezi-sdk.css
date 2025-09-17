@@ -1,8 +1,8 @@
-/* Rezi SDK Styles - Simple and Clean */
+/* Rezi SDK Styles - Resume Import */
 
 /* CSS Variables for easy customization */
 :root {
-  --rezi-primary: #ffff;
+  --rezi-primary: #4285f4;
   --rezi-primary-hover: #2563eb;
   --rezi-secondary: #6b7280;
   --rezi-secondary-hover: #4b5563;
@@ -20,6 +20,12 @@
   --rezi-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Font smoothing for better text rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Base component styles */
 .rezi-component {
   font-family: var(--rezi-font-family);
@@ -32,373 +38,93 @@
   box-sizing: border-box;
 }
 
-/* Theme variants */
-.rezi-theme-light {
-  --rezi-bg: #ffffff;
-  --rezi-text: #1f2937;
-  --rezi-text-muted: #6b7280;
+/* Resume Upload Loader Styles */
+.resume-loader {
+  display: none;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.rezi-theme-dark {
-  --rezi-bg: #1f2937;
-  --rezi-text: #f9fafb;
-  --rezi-text-muted: #9ca3af;
-  --rezi-border: #374151;
+.resume-loader .spinner {
+  width: 100%;
+  height: 100%;
+  border: 4px solid #e3f2fd;
+  border-top: 4px solid var(--rezi-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-/* Button Styles */
-.rezi-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--rezi-radius);
-  font-weight: 500;
-  border: 1px solid transparent;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Drag and Drop Zone Styles */
+[data-resume-dropzone] {
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.rezi-btn:focus {
-  outline: 2px solid var(--rezi-primary);
-  outline-offset: 2px;
+[data-resume-dropzone]:hover {
+  transform: translateY(-2px);
 }
 
-.rezi-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+[data-resume-dropzone].dragover {
+  border: 2px dashed var(--rezi-primary) !important;
+  background-color: rgba(66, 133, 244, 0.05) !important;
 }
 
-/* Button sizes */
-.rezi-btn-sm {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.rezi-btn-md {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.rezi-btn-lg {
-  padding: 0.75rem 1.5rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
-/* Button variants */
-.rezi-btn-primary {
-  background-color: var(--rezi-primary);
-  color: white;
-}
-
-.rezi-btn-primary:hover:not(:disabled) {
-  background-color: var(--rezi-primary-hover);
-}
-
-.rezi-btn-secondary {
-  background-color: var(--rezi-secondary);
-  color: white;
-}
-
-.rezi-btn-secondary:hover:not(:disabled) {
-  background-color: var(--rezi-secondary-hover);
-}
-
-.rezi-btn-outline {
-  background-color: transparent;
-  color: var(--rezi-primary);
-  border-color: var(--rezi-primary);
-}
-
-.rezi-btn-outline:hover:not(:disabled) {
-  background-color: var(--rezi-primary);
-  color: white;
-}
-
-/* Modal Styles */
-.rezi-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.rezi-modal-overlay.rezi-modal-open {
-  opacity: 1;
-}
-
-.rezi-modal {
-  background: var(--rezi-bg);
-  border-radius: var(--rezi-radius);
-  box-shadow: var(--rezi-shadow-lg);
-  max-width: 90vw;
-  max-height: 90vh;
-  width: 500px;
-  overflow: hidden;
-  transform: translateY(-20px);
-  transition: transform 0.3s ease;
-}
-
-.rezi-modal-overlay.rezi-modal-open .rezi-modal {
-  transform: translateY(0);
-}
-
-.rezi-modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--rezi-border);
-}
-
-.rezi-modal-title {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--rezi-text);
-}
-
-.rezi-modal-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--rezi-text-muted);
-  padding: 0;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--rezi-radius);
-  transition: background-color 0.2s ease;
-}
-
-.rezi-modal-close:hover {
-  background-color: var(--rezi-border);
-}
-
-.rezi-modal-content {
-  padding: 1.5rem;
-  color: var(--rezi-text);
-  line-height: 1.6;
-}
-
-/* Toast Styles */
-.rezi-toast-container {
-  position: fixed;
-  z-index: 2000;
+[data-resume-dropzone].loading {
   pointer-events: none;
+  opacity: 0.8;
 }
 
-.rezi-toast {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--rezi-bg);
-  border-radius: var(--rezi-radius);
-  box-shadow: var(--rezi-shadow-lg);
-  padding: 1rem;
-  margin: 0.5rem;
-  max-width: 400px;
-  min-width: 300px;
-  pointer-events: auto;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
+/* Hide upload icon when loading */
+[data-resume-dropzone].loading #replace-with-loader {
+  display: none !important;
 }
 
-.rezi-toast.rezi-toast-show {
-  transform: translateX(0);
+#replace-with-loader.loading {
+  display: none !important;
 }
 
-/* Toast positions */
-.rezi-toast-top-right {
-  top: 1rem;
-  right: 0;
+/* Show loader when loading */
+[data-resume-dropzone].loading .resume-loader {
+  display: block !important;
 }
 
-.rezi-toast-top-left {
-  top: 1rem;
-  left: 0;
-}
-
-.rezi-toast-bottom-right {
-  bottom: 1rem;
-  right: 0;
-}
-
-.rezi-toast-bottom-left {
-  bottom: 1rem;
-  left: 0;
-}
-
-.rezi-toast-top-center {
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.rezi-toast-bottom-center {
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.rezi-toast-top-center.rezi-toast-show,
-.rezi-toast-bottom-center.rezi-toast-show {
-  transform: translateX(-50%);
-}
-
-/* Toast types */
-.rezi-toast-success {
-  border-left: 4px solid var(--rezi-success);
-}
-
-.rezi-toast-error {
-  border-left: 4px solid var(--rezi-error);
-}
-
-.rezi-toast-warning {
-  border-left: 4px solid var(--rezi-warning);
-}
-
-.rezi-toast-info {
-  border-left: 4px solid var(--rezi-info);
-}
-
-.rezi-toast-content {
-  flex: 1;
-  color: var(--rezi-text);
+/* Error State Styles */
+.resume-upload-error {
+  color: var(--rezi-error);
   font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.rezi-toast-close {
-  background: none;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  color: var(--rezi-text-muted);
-  margin-left: 0.75rem;
-  padding: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--rezi-radius);
-  transition: background-color 0.2s ease;
-}
-
-.rezi-toast-close:hover {
-  background-color: var(--rezi-border);
-}
-
-/* Form Styles */
-.rezi-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background: var(--rezi-bg);
-  padding: 1.5rem;
-  border-radius: var(--rezi-radius);
-  border: 1px solid var(--rezi-border);
-}
-
-.rezi-form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.rezi-form-label {
-  font-weight: 500;
-  color: var(--rezi-text);
-  font-size: 0.875rem;
-}
-
-.rezi-form-input {
-  padding: 0.75rem;
-  border: 1px solid var(--rezi-border);
-  border-radius: var(--rezi-radius);
-  font-size: 1rem;
-  font-family: inherit;
-  background: var(--rezi-bg);
-  color: var(--rezi-text);
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.rezi-form-input:focus {
-  outline: none;
-  border-color: var(--rezi-primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.rezi-form-input::placeholder {
-  color: var(--rezi-text-muted);
-}
-
-.rezi-form-submit {
-  align-self: flex-start;
   margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Success State Styles */
+.resume-upload-success {
+  color: var(--rezi-success);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
 /* Responsive design */
 @media (max-width: 640px) {
-  .rezi-modal {
-    width: 95vw;
-    margin: 1rem;
+  .resume-loader {
+    width: 40px;
+    height: 40px;
   }
 
-  .rezi-toast {
-    max-width: 95vw;
-    min-width: 280px;
-  }
-
-  .rezi-form {
-    padding: 1rem;
-  }
-}
-
-/* Animation keyframes */
-@keyframes rezi-fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes rezi-slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes rezi-slideInLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
+  [data-resume-dropzone]:hover {
+    transform: none;
   }
 }
 
