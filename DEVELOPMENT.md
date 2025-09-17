@@ -42,9 +42,8 @@ rezi-mono-repo/libs/sdk/
 2. **Make your changes in:**
 
    ```
-   libs/sdk/src/           # Source TypeScript/JavaScript
-   libs/sdk/styles/        # Source CSS/SCSS
-   libs/sdk/tests/         # Tests
+   libs/sdk/src/index.ts          # Source TypeScript/JavaScript
+   libs/sdk/src/styles.css        # Source CSS/SCSS
    ```
 
 3. **Test your changes:**
